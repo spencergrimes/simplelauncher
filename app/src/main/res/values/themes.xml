@@ -1,0 +1,15 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--
+      Light parent, not DayNight: the launcher looks identical whatever the system
+      theme is doing. values-night/themes.xml re-declares the same thing so dark mode
+      cannot flip it.
+    -->
+    <style name="Base.Theme.SimpleLauncher" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowBackground">@color/paper</item>
+        <item name="android:windowShowWallpaper">false</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+    </style>
+
+    <style name="Theme.SimpleLauncher" parent="Base.Theme.SimpleLauncher" />
+</resources>

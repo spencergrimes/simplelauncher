@@ -1,0 +1,24 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Kotlin build-session scratch dir (AGP 9 / Kotlin 2.x). Not ignored by the
+# stock Android template.
+.kotlin
+
+# Local Claude Code permissions. Machine-specific and contains absolute paths
+# from this machine. Covered by a global gitignore here, but that does not
+# travel with the repo — so ignore it explicitly.
+.claude/settings.local.json

@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Identical to values/themes.xml on purpose: no dark variant. -->
+    <style name="Base.Theme.SimpleLauncher" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowBackground">@color/paper</item>
+        <item name="android:windowShowWallpaper">false</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+    </style>
+</resources>

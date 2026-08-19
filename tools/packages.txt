@@ -1,0 +1,47 @@
+# Packages to remove from the device with tools/strip.sh
+#
+# One package name per line. Blank lines and # comments are ignored; a trailing
+# comment after a package name is fine too.
+#
+# EVERYTHING BELOW IS COMMENTED OUT ON PURPOSE. strip.sh does nothing until you
+# uncomment lines here deliberately, and even then it dry-runs unless you pass
+# --apply.
+#
+# Nothing here is truly deleted — `pm uninstall -k --user 0` removes the package
+# for user 0 only; the system image copy stays. tools/restore.sh brings any of it
+# back. See README.md.
+#
+# Find the exact name of something on the device:
+#   adb shell pm list packages | grep -i chrome
+
+# --- browser -------------------------------------------------------------
+# Removing Chrome also removes the system WebView provider on some builds and
+# can break in-app browsers. Test before you commit to this one.
+#com.android.chrome
+
+# --- media / entertainment -----------------------------------------------
+#com.google.android.youtube
+#com.google.android.videos                  # Google TV / Play Movies
+#com.google.android.apps.youtube.music
+#com.google.android.play.games              # Play Games
+
+# --- the Google app ------------------------------------------------------
+# This is the Google app / Assistant / Discover feed / "at a glance". Removing
+# it kills the search bar, hotword, and the weather that Pixel Weather does not
+# provide on older devices. Big change — be sure.
+#com.google.android.googlequicksearchbox
+
+# --- productivity --------------------------------------------------------
+#com.google.android.apps.docs               # Drive
+#com.google.android.apps.docs.editors.docs   # Docs
+#com.google.android.apps.docs.editors.sheets # Sheets
+#com.google.android.apps.docs.editors.slides # Slides
+#com.google.android.gm                      # Gmail
+#com.google.android.calendar
+#com.google.android.keep
+
+# --- misc ----------------------------------------------------------------
+#com.google.android.apps.podcasts
+#com.google.android.apps.tachyon            # Meet / Duo
+#com.google.android.apps.wellbeing          # Digital Wellbeing
+#com.google.android.apps.subscriptions.red  # Google One

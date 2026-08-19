@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  One app name. Plain text, left aligned, no icon, no divider, no card.
+  12dp of padding above and below gives the ~24dp gap between rows while still
+  leaving a usable touch target. background/@null keeps the ripple off.
+-->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@null"
+    android:fontFamily="sans-serif"
+    android:gravity="start"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp"
+    android:textColor="@color/ink"
+    android:textSize="22sp"
+    android:textStyle="normal"
+    tools:text="Messages" />
