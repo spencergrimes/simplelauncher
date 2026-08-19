@@ -19,12 +19,13 @@ Kotlin natively — `:app:compileDebugKotlin` runs with no
 `libs.versions.toml`. Adding one is unnecessary and risks colliding with AGP's
 built-in support.
 
-**There is no working `java` on this machine's `PATH`.** macOS ships a
-`/usr/bin/java` stub that resolves fine under `command -v` and then does nothing
-but tell you to install a JRE — so any `command -v java` guard is a false
-positive. The real JDK is the one bundled with Android Studio. `install.sh`
-handles this by testing whether `java -version` actually *executes*, not whether
-the binary exists. To build by hand:
+**A standalone JDK may not be on your `PATH`, and that is survivable.** On macOS
+without one installed, `/usr/bin/java` is a stub that resolves fine under
+`command -v` and then does nothing but tell you to install a JRE — so any
+`command -v java` guard is a false positive. The JDK bundled with Android Studio
+works. `install.sh` handles this by testing whether `java -version` actually
+*executes*, not whether the binary exists, and falls back to the bundled JDK. To
+build by hand:
 
     JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home" ./gradlew :app:assembleDebug
 
@@ -50,14 +51,14 @@ To find a package name for something on the phone:
 
     adb shell pm list packages | grep -i maps
 
-Two entries ship commented as caveats, and both were **confirmed absent on the
-actual test device**: **Pixel Weather** (`com.google.android.apps.weather`)
-doesn't exist on this Pixel 5 build — weather lives inside the Google app there
-and has no launcher entry — and **Google Authenticator**
-(`com.google.android.apps.authenticator2`) is never preinstalled. Neither row
-renders until those apps are present, which is the "silently omit" path working
-as intended, not a fault. 7 of the 9 seeded packages resolve; the home screen
-shows 7 rows.
+Two entries ship commented as caveats, and both were **confirmed absent when this
+was tested on hardware**: **Pixel Weather** (`com.google.android.apps.weather`)
+is missing from many older Pixel builds — weather lives inside the Google app
+there and has no launcher entry — and **Google Authenticator**
+(`com.google.android.apps.authenticator2`) is never preinstalled anywhere.
+Neither row renders until those apps are present, which is the "silently omit"
+path working as intended, not a fault. Expect 7 of the 9 seeded packages to
+resolve on a stock device.
 
 ### Behavior
 
@@ -288,8 +289,9 @@ for a day before removing more.
 
 ## Status — what has actually been verified
 
-Test device: **Pixel 5 (`redfin`), Android 14, API 34, build UP1A.231105.001.B2.**
-Note it has **no SIM**, so placing a real call has never been exercised.
+Tested on a stock Pixel running **Android 14 (API 34)**. Placing an actual phone
+call was never exercised, so the Phone row is verified only as far as launching
+the dialer.
 
 Verified on hardware:
 
